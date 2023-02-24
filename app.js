@@ -60,7 +60,7 @@ app.get("/movies/", async (request, response) => {
 
   const MoviesArray = await db.all(getMoviesQuery);
   response.send(
-    MoviesArray.map((eachItem) => convertDbObjectToResponseObject(eachItem))
+    MoviesArray.map((eachItem) => convertDbObjectToResponseMovieObject(eachItem))
   );
 });
 
@@ -143,7 +143,7 @@ app.get("/directors/", async (request, response) => {
   const directorsArray = await db.all(getDirectorsQuery);
   response.send(
     directorsArray.map((eachItem) => {
-      return convertDbObjectToResponseMovieObject(eachItem);
+      return convertDbObjectToResponseDirectorObject(eachItem);
     })
   );
 });
@@ -163,3 +163,4 @@ app.get("/directors/:directorId/movies/", async (request, response) => {
     })
   );
 });
+module.exports = app
